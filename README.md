@@ -1,1 +1,1 @@
-# etch-a-sketch
+Etch-a-Sketch game made for The Odin Project.
