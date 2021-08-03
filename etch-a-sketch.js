@@ -14,9 +14,11 @@ function makeGrids(){
         }
     }
 }
-function changeColorMode(){
-    if (colorMode=='b&w') colorMode='rainbow'
-    else colorMode='b&w'
+function changeColorModetoRainbow(){
+    colorMode='rainbow'
+}
+function changeColorModetoBlack(){
+    colorMode='b&w'
 }
 function askGridSize(){
     let gridSize = prompt('What size would you like your grid to be?')
@@ -34,7 +36,7 @@ function changeColor(){
     if (colorMode=='rainbow'){
         this.style['background-color']=getRandomColor()
     }
-    else{
+    else if (colorMode='b&w'){
         this.style['background-color']='black'
     }
 }
@@ -50,9 +52,11 @@ makeGrids()
 const cleanButton = document.querySelector('#clean-button')
 const square = document.querySelectorAll('.squares')
 const rainbowButton=document.querySelector('#rainbow-button')
+const bwButton=document.querySelector('#bw-button')
 cleanButton.addEventListener('click', cleanGrids)
 let colorMode='b&w'
-rainbowButton.addEventListener('click',changeColorMode)
+rainbowButton.addEventListener('click',changeColorModetoRainbow)
+bwButton.addEventListener('click',changeColorModetoBlack)
 for(let i=0;i<square.length;i++){
     square[i].addEventListener('mouseover',changeColor)
 }
