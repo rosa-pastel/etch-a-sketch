@@ -1,6 +1,6 @@
 function makeGrids(){
     const gridContainer=document.querySelector('#grid-container')
-    let gridSize=askGridSize()
+    gridSize=askGridSize()
     gridContainer.style['grid-template-columns']='repeat('+gridSize+',1fr)'
     const squareWidth=720/gridSize+'px'
     const squareHeight=720/gridSize+'px'
@@ -48,6 +48,7 @@ function getRandomColor(){
     }
     return randomColor
 }
+let gridSize
 makeGrids()
 const cleanButton = document.querySelector('#clean-button')
 const square = document.querySelectorAll('.squares')
@@ -60,3 +61,7 @@ bwButton.addEventListener('click',changeColorModetoBlack)
 for(let i=0;i<square.length;i++){
     square[i].addEventListener('mouseover',changeColor)
 }
+const changeSizeButton=document.querySelector('#change-size-button')
+changeSizeButton.addEventListener('click',()=>{
+  makeGrids()
+})
