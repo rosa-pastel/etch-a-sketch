@@ -1,15 +1,13 @@
 function makeGrids(){
-  let gridSize=10
-  let squareWidth=0
-  let squareHeight=0
-  let div
-  let gridContainer=document.querySelector('#grid-container')
-  gridSize=askGridSize()
+    const gridContainer=document.querySelector('#grid-container')
+    let gridSize=askGridSize()
+    if (gridSize=="") gridSize=10
     gridContainer.style['grid-template-columns']='repeat('+gridSize+',1fr)'
-    squareWidth=720/gridSize+'px'
-    squareHeight=720/gridSize+'px'
-    for(i=0; i<gridSize; i++){
-        for(k=0; k<gridSize; k++){
+    let squareWidth=720/gridSize+'px'
+    let squareHeight=720/gridSize+'px'
+    let div
+    for(let i=0; i<gridSize; i++){
+        for(let k=0; k<gridSize; k++){
             div=document.createElement('div')
             div.style.width=squareWidth
             div.style.height=squareHeight
@@ -17,6 +15,7 @@ function makeGrids(){
             gridContainer.appendChild(div)
         }
     }
+    changeColorModetoBlack()
 }
 function changeColorModetoRainbow(){
     colorMode='rainbow'
@@ -26,19 +25,20 @@ function changeColorModetoBlack(){
 }
 function askGridSize(){
     gridSize=prompt('Please enter a grid size between 1 and 100.')
-    while (gridSize>100){
-      alert('Grid size cannot be more than 100. Please enter a valid grid size.')
+    if (gridSize>100){
+      alert('Grid size must be between 0 and 100. Please enter a valid grid size.')
       gridSize=askGridSize()
     }
-    while (isNaN(gridSize)){
+    else if (isNaN(gridSize)){
       alert('Grid size should be a number. Please enter a valid grid size.')
       gridSize=askGridSize()
     }
     return gridSize
 }
 function cleanGrids(){
-    for(m=0;m<square.length;m++){
-        square[m].style['background-color']='white'
+    const squares = document.getElementsByClassName('squares')
+    for(let i=0;i<square.length;i++){
+        squares[i].style['background-color']='white'
     }
 }
 function changeColor(){
@@ -52,33 +52,31 @@ function changeColor(){
 function getRandomColor(){
     let randomColor='#'
     const letters='0123456789ABCDEF'
-    for (n=0;n<6;n++){
+    for (let i=0;i<6;i++){
         randomColor+=letters[Math.ceil(Math.random()*15)]
     }
     return randomColor
 }
-let m,n,i,k
 makeGrids()
 const cleanButton = document.querySelector('#clean-button')
-let square = document.querySelectorAll('.squares')
 const rainbowButton=document.querySelector('#rainbow-button')
 const bwButton=document.querySelector('#bw-button')
+const changeSizeButton=document.querySelector('#change-size-button')
+
 cleanButton.addEventListener('click', cleanGrids)
-let colorMode='b&w'
 rainbowButton.addEventListener('click',changeColorModetoRainbow)
 bwButton.addEventListener('click',changeColorModetoBlack)
-const changeSizeButton=document.querySelector('#change-size-button')
 changeSizeButton.addEventListener('click',()=>{
-  gridContainer=document.querySelector('#grid-container')
-  square = document.getElementsByClassName('squares')
+  const gridContainer=document.querySelector('#grid-container')
+  const squares = document.getElementsByClassName('squares')
   while (gridContainer.firstChild){
     gridContainer.removeChild(gridContainer.lastChild)
   }
   makeGrids()
-  for(let i=0;i<square.length;i++){
-    square[i].addEventListener('mouseover',changeColor)
+  for(let i=0;i<squares.length;i++){
+    squares[i].addEventListener('mouseover',changeColor)
   }
 })
 for(let i=0;i<square.length;i++){
-  square[i].addEventListener('mouseover',changeColor)
+  squares[i].addEventListener('mouseover',changeColor)
 }
