@@ -50,3 +50,9 @@ h1{
     scale: 1.1;
     cursor: pointer;
 }
+#click-mode{
+  background-color: blueviolet;
+}
+#hover-mode{
+  background-color: blueviolet;
+}
