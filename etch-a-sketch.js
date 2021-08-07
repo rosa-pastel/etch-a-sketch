@@ -1,5 +1,5 @@
 function makeGrids(){
-  let gridSize=0
+  let gridSize=10
   let squareWidth=0
   let squareHeight=0
   let div
