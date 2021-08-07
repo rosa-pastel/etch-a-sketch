@@ -25,9 +25,14 @@ function changeColorModetoBlack(){
     colorMode='b&w'
 }
 function askGridSize(){
-    gridSize = prompt('What size would you like your grid to be?')
+    gridSize=prompt('Please enter a grid size between 1 and 100.')
     while (gridSize>100){
-        gridSize=prompt('Grid size cannot be more than 100. Please enter a valid grid size.')
+      alert('Grid size cannot be more than 100. Please enter a valid grid size.')
+      gridSize=askGridSize()
+    }
+    while (isNaN(gridSize)){
+      alert('Grid size should be a number. Please enter a valid grid size.')
+      gridSize=askGridSize()
     }
     return gridSize
 }
