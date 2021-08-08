@@ -40,12 +40,16 @@ function makeGrids(){
     eraserButton.addEventListener('click',()=>{colorMode='white'})
 
     const changeSizeButton=document.querySelector('#change-size-button')
-    changeSizeButton.addEventListener('click',()=>{
+
+    if (timesGridSizeChanged==0){
+      changeSizeButton.addEventListener('click',()=>{
         while (gridContainer.firstChild){
-        gridContainer.removeChild(gridContainer.lastChild)
-      }
-      makeGrids()
-    })
+          gridContainer.removeChild(gridContainer.lastChild)
+        }
+        makeGrids()
+      })
+    }
+    timesGridSizeChanged++
 }
 function changePlayMode(playMode){
   const squares = document.getElementsByClassName('squares')
@@ -90,14 +94,10 @@ function cleanGrids(){
     }
 }
 function changeColor(){
-    if (colorMode=='rainbow'){
-        this.style['background-color']=getRandomColor()
-    }
-    else if (colorMode=='b&w'){
-        this.style['background-color']='black'
-    }
-    else if (colorMode=='white'){
-      this.style['background-color']='white'
+    switch (colorMode){
+    case 'rainbow': this.style['background-color']=getRandomColor(); break
+    case 'white': this.style['background-color']='white'; break
+    default: this.style['background-color']='black'
     }
 }
 function getRandomColor(){
@@ -108,5 +108,6 @@ function getRandomColor(){
     }
     return randomColor
 }
-let colorMode='b&w'
+let colorMode
+let timesGridSizeChanged=0
 makeGrids()
