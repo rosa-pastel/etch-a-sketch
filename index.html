@@ -7,14 +7,17 @@
         <h1>etch-a-sketch</h1>
         <div id='game-area'>
             <div id='settings'>
+                <div class="grid-size">
+                    <label for="range" multiple>Change Grid Size</label>
+                    <input type="range" id="range" value="50" min="1" max="100">
+                </div>
                 <button id='clean-button' class='button'>clean the board</button>
                 <button id='rainbow-button' class='button'>rainbow mode</button>
                 <button id='bw-button' class='button'>b&w mode</button>
                 <button id='eraser-button' class='button'>eraser</button>
-                <button id='change-size-button' class='button'>change grid size</button>
                 <button id='click-mode' class='button'>click mode</button>
                 <button id='hover-mode' class='button'>hover mode</button>
-              </div>
+                </div>
             <div id='grid-container'></div>
         </div>
     </body>

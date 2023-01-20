@@ -1,6 +1,15 @@
 function makeGrids(){
     const gridContainer=document.querySelector('#grid-container')
-    let gridSize=askGridSize()
+
+    const gridSizeRange = document.querySelector('input');
+    let gridSize=gridSizeRange.value
+    gridSizeRange.addEventListener('click',()=>{
+      while (gridContainer.firstChild){
+        gridContainer.removeChild(gridContainer.lastChild)
+      }
+      makeGrids()
+    })
+
     if (gridSize=="" || gridSize==null) gridSize=10
     gridContainer.style['grid-template-columns']='repeat('+gridSize+',1fr)'
     let squareWidth=720/gridSize+'px'
@@ -39,17 +48,6 @@ function makeGrids(){
     const eraserButton=document.querySelector('#eraser-button')
     eraserButton.addEventListener('click',()=>{colorMode='white'})
 
-    const changeSizeButton=document.querySelector('#change-size-button')
-
-    if (timesGridSizeChanged==0){
-      changeSizeButton.addEventListener('click',()=>{
-        while (gridContainer.firstChild){
-          gridContainer.removeChild(gridContainer.lastChild)
-        }
-        makeGrids()
-      })
-    }
-    timesGridSizeChanged++
 }
 function changePlayMode(playMode){
   const squares = document.getElementsByClassName('squares')
@@ -75,18 +73,6 @@ function changePlayMode(playMode){
   }
   }
 }
-function askGridSize(){
-    gridSize=prompt('Please enter a grid size between 1 and 100.')
-    if (gridSize>100){
-      alert('Grid size must be between 0 and 100. Please enter a valid grid size.')
-      gridSize=askGridSize()
-    }
-    else if (isNaN(gridSize)){
-      alert('Grid size should be a number. Please enter a valid grid size.')
-      gridSize=askGridSize()
-    }
-    return gridSize
-}
 function cleanGrids(){
     const squares = document.getElementsByClassName('squares')
     for(let i=0;i<squares.length;i++){
@@ -109,5 +95,7 @@ function getRandomColor(){
     return randomColor
 }
 let colorMode
-let timesGridSizeChanged=0
 makeGrids()
+
+
+

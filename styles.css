@@ -56,3 +56,22 @@ h1{
 #hover-mode{
   background-color: blueviolet;
 }
+label{
+    font-family: monospace;
+    font-size: 16px;
+    color: rgb(51, 138, 209);
+    font-weight: bold;
+    margin: 10px 0px;
+}
+input:hover{
+    cursor: pointer;
+}
+.grid-size{
+    margin: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    border: solid 2px rgb(51, 138, 209);
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
